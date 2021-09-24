@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>My first HTML doc in web apps</title>
+</head>
+<body>
+    <a href="bonus.html"><b>Click here to go to BONUS page</b></a>
+    <h1>Nithin Reddy Kumbham</h1>
+    <h5>Miami is my favourite place</h5>
+    <p><b>Miami is a hub for braches and pubs</b> where one can chill completely with all his energy levels high by <b>doing various activities</b></p>   
+<hr>
+<h4>Travel ditections from maryville to miami</h4>
+<ol>
+    <li>Start from Maryville by Car or bike</li>
+    <li>Reach Kansas City</li>
+    <li>Start from Kansas City by</li>
+    <ol>
+        <li>Car</li>
+        <li>Flight</li>
+        <li>Bike</li>
+    </ol>
+    <li>Your destination has arrived</li>
+</ol>
+<hr>
+<h4>Items to be brought to favourite place</h4>
+<ul>
+    <li>Tents</li>
+    <li>Sunscreen</li>
+    <li>Food</li>
+    <li>Drinks</li>
+    <li>Clothes</li>
+    <li>Music devices</li>
+</ul>
+<hr>
+<a href="aboutme.html"><b>Click here to go to aboutme page</b></a>
+<hr>
+<h4>Table showing best food items one should try</h4>
+<table>
+    <tr>
+        <th>Food/Drink </th>
+        <th>Location </th>
+        <th>Price</th>
+    </tr>
+    <tr>
+        <td>Biriyani</td>
+        <td>India</td>
+        <td>150 - 200</td>
+    </tr>
+    <tr>
+        <td>Burgers</td>    		
+        <td>USA</td>
+        <td>100 - 150</td>
+    </tr>
+    <tr>
+        <td>Fast food</td>    				
+        <td>China</td>
+        <td>100 - 200</td>
+    </tr>
+    <tr>
+        <td>Sandwiches</td>    						
+        <td>UK</td>
+        <td>150 - 200</td>
+    </tr>
+</table>
+<hr>
+<h4>Code display</h4>
+<a href="https://en.wikipedia.org/wiki/Dynamic_programming"><b>Dynamic_programming</b></a>
+<blockquote cite="https://en.wikipedia.org/wiki/Dynamic_programming">
+    Dynamic programming is both a mathematical optimization method and a computer programming method.<br>
+    The method was developed by Richard Bellman in the 1950s and has found applications in numerous fields, from aerospace engineering to economics.
+</blockquote>
+<pre>
+    int m, n;
+vector<long long> dp_before(n), dp_cur(n);
+
+long long C(int i, int j);
+
+// compute dp_cur[l], ... dp_cur[r] (inclusive)
+void compute(int l, int r, int optl, int optr) {
+if (l > r)
+    return;
+
+int mid = (l + r) >> 1;
+pair<long long, int> best = {LLONG_MAX, -1};
+
+for (int k = optl; k <= min(mid, optr); k++) {
+    best = min(best, {(k ? dp_before[k - 1] : 0) + C(k, mid), k});
+}
+
+dp_cur[mid] = best.first;
+int opt = best.second;
+
+compute(l, mid - 1, optl, opt);
+compute(mid + 1, r, opt, optr);
+}
+
+int solve() {
+for (int i = 0; i < n; i++)
+    dp_before[i] = C(0, i);
+
+for (int i = 1; i < m; i++) {
+    compute(0, n - 1, 0, n - 1);
+    dp_before = dp_cur;
+}
+
+return dp_before[n - 1];
+}
+</pre>
+<a href="https://en.wikipedia.org/wiki/Linear_algebra"><b>Linear_algebra</b></a>
+<blockquote cite ="https://en.wikipedia.org/wiki/Linear_algebra">
+    Linear algebra is the branch of mathematics concerning linear equations, linear maps and their representations in vector spaces and through matrices.
+</blockquote>
+<pre>
+    const double EPS = 1E-9;
+
+int compute_rank(vector<vector<double>> A) {
+int n = A.size();
+int m = A[0].size();
+
+int rank = 0;
+vector<bool> row_selected(n, false);
+for (int i = 0; i < m; ++i) {
+    int j;
+    for (j = 0; j < n; ++j) {
+        if (!row_selected[j] && abs(A[j][i]) > EPS)
+            break;
+    }
+
+    if (j != n) {
+        ++rank;
+        row_selected[j] = true;
+        for (int p = i + 1; p < m; ++p)
+            A[j][p] /= A[j][i];
+        for (int k = 0; k < n; ++k) {
+            if (k != j && abs(A[k][i]) > EPS) {
+                for (int p = i + 1; p < m; ++p)
+                    A[k][p] -= A[j][p] * A[k][i];
+            }
+        }
+    }
+}
+return rank;
+}
+</pre>
+<a href="https://en.wikipedia.org/wiki/Numerical_method"><b>Numerical_method</b></a>
+<blockquote cite="https://en.wikipedia.org/wiki/Numerical_method">
+    In numerical analysis, a numerical method is a mathematical tool designed to solve numerical problems.<br>
+    The implementation of a numerical method with an appropriate convergence check in a programming language is called a numerical algorithm.
+</blockquote>
+<pre>
+    double ternary_search(double l, double r) {
+        double eps = 1e-9;              //set the error limit here
+        while (r - l > eps) {
+            double m1 = l + (r - l) / 3;
+            double m2 = r - (r - l) / 3;
+            double f1 = f(m1);      //evaluates the function at m1
+            double f2 = f(m2);      //evaluates the function at m2
+            if (f1 < f2)
+                l = m1;
+            else
+                r = m2;
+        }
+        return f(l);                    //return the maximum of f(x) in [l, r]
+    }
+</pre>
+</body>
+</html>
