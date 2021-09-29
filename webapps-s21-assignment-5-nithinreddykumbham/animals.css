@@ -1,0 +1,33 @@
+.col-sm-2{
+    color:darkblue;
+}
+
+.col-md{
+    color: darkmagenta;
+}
+
+h4{
+    color: teal;
+}
+
+p{
+    color:blue;
+}
+
+.abc{
+    color: crimson;
+    text-align: center;
+}
+
+a.def:hover{
+    color:chocolate;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: medium;
+}
+
+.card1{
+    display: flex;
+    padding: 15px;
+    margin: 15px;
+}
