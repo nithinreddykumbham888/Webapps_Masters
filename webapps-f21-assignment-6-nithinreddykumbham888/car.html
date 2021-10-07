@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Checkbox JavaScript</title>
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" 
+    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" 
+    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./JS.css">  
+</head>
+ 
+<body>
+
+<h2>Nithin Reddy Kumbham orders a car</h2>
+
+<form>
+    <input type ="checkbox" id="check_box1" name="check" value=electric>
+    <label for="check_box1">Electric</label> <br>
+
+    <input type ="checkbox" id="check_box2" name="check" value="ac" > 
+    <label for="check_box2">AC</label><br>
+
+    <input type ="checkbox" id="check_box3" name="check" value="gps"> 
+    <label for="check_box3">GPS</label><br>
+    
+
+    <input type="button" id="btn" onclick="orderCar()" value="Order a car">
+</form> <br>
+
+<p id="result"></p>
+
+<form>
+<label for="property">Enter a property</label>
+<input type="text" id="property" name="property_1" value="color"><br>
+
+<label for="properte">Enter a value</label>
+<input type="text" id="properte" name="property_2" value="number"><br>
+</form>
+<button onclick="updateCar()">Update the car</button>
+
+<p id="result2"></p>
+
+
+
+
+<script> 
+let my_car = {}
+function orderCar(){
+    my_car = {}
+    var a = document.getElementById("check_box1").checked
+    var b = document.getElementById("check_box2").checked
+    var c = document.getElementById("check_box3").checked
+    if(a){
+        my_car.electric = a
+        console.log(my_car)
+    }
+    else{
+        my_car.electric = false
+        console.log(my_car)
+    }
+    if(b){
+        my_car.ac = b
+        console.log(my_car)
+    }
+    else{
+        my_car.ac = false
+        console.log(my_car)
+    }
+    if(c){
+        my_car.gps = c
+        console.log(my_car)
+    }
+    else{
+        my_car.gps = false
+        console.log(my_car)
+    }
+    document.getElementById("result").innerHTML = "Electric : " + my_car.electric + ", "+ "AC : " + my_car.ac+ ", "+"GPS : " + my_car.gps;
+}
+
+function updateCar(){
+    var a = document.getElementById("property").value
+    var b = document.getElementById("properte").value
+    my_car.color = a
+    my_car.number = b
+    console.log(my_car)
+    document.getElementById("result2").innerHTML ="Colour : " + my_car.color + "\n" + "Number : " + my_car.number
+}
+</script>
+
+</body>
+</html> 
