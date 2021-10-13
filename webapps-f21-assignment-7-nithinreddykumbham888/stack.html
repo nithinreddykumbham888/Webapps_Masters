@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html> 
+<head> 
+    <title>Stack Page</title>
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<style>
+    .flex-container {
+      display: flex;  flex-direction:row;
+      background-color: lightgreen;
+  }
+
+.flex-container > div {  /*div children of the flex container*/
+  background-color: #f1f1f1; 
+  margin: 10px;  padding: 20px;  font-size: 30px;
+}
+
+/* Responsive layout */
+@media (max-width: 600px) { 
+	 .flex-container{
+		 flex-direction:column;
+		 background-color: green;
+	  }
+	}
+  #input{
+      font-weight: bold;
+      color: blue;
+  }
+
+  #input1{
+      font-weight: bold;
+      color: chocolate;
+  }
+
+  #para{
+      font-size: medium;
+      font-weight: bold;
+      font-family: 'Times New Roman', Times, serif;
+      color:orangered
+  }
+</style>
+</head>
+
+
+
+<body>
+    <h1><b>Nithin Reddy builds a stack</b></h1>
+    <label for="input" id="input">Input :</label>
+    <input type="text" id="input1" name="input"><br><br>
+
+		<div class="flex-container" id="target">
+		  <div class="stack">row item 1</div>   
+		  <div class="stack">row item 2</div>  
+		  <div class="stack">row item 3</div>  
+		</div>
+	
+	<p id="para"> Press the button to create an new element of type div and then add it to the container.
+		</p>
+		<button class="btn btn-info" onclick="Stack()"><b>Push Value</b></button>
+        <button class="btn btn-primary" onclick="Popitem()"><b>Pop Value</b></button>
+        <button class="btn btn-warning" onclick="Zapvalues()"><b>Zap Value</b></button>
+	
+	
+</body>
+<script>
+	function Stack(){
+        var input = document.getElementById("input1").value
+
+		/* make the div and its text */
+		let element = document.createElement("div")
+		element.innerHTML = input
+		element.className = "stack"
+
+		/* add it to the container */
+		document.getElementById('target').appendChild(element)
+		
+	}
+
+  function Popitem(){
+      var stackItems = document.getElementsByClassName("stack")
+      if(stackItems.length>0){
+        stackItems[stackItems.length-1].remove()
+      }
+      console.log(stackItems)
+      console.log(stackItems.length)
+      console.log(stackItems.length-1)
+  }
+
+  function Zapvalues(){
+    var stackItems = document.getElementsByClassName("stack")
+     var input = document.getElementById("input1").value
+     console.log(stackItems)
+     console.log(input)
+     for(var i=0;i<stackItems.length;i++){
+       if(stackItems[i]==input){
+         stackItems[stackItems[i]].remove()
+
+       }
+     }
+     console.log("We are getting rid of all elements with " + input + "'")
+  }
+</script>
+</html>	
+

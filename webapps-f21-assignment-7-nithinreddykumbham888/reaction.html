@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Timeout page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="./DOM.css">
+</head>
+<body>
+
+  <h1>Nithin Reddy Reaction Timer</h1>
+  
+ <p id="target">Your time</p>
+ <p id="countdown">Count</p>
+
+  <button type="button" id="btn1" class="btn btn-warning" onclick="startTime()">Start Timer</button> <br><br>
+  <button type="button" id="btn2" class="btn btn-info" onclick="recordReact()">React Now</button>
+  
+  <!-- <p id="target">I will become red </p> -->
+  
+  <script> 
+  let myTime = undefined
+  let buttonTime
+  function recordReact() {
+     myTime = Date.now()
+     console.log(myTime)
+  }
+
+
+  function startTime(){
+     for(var i=0;i<4;i++){
+        setTimeout(() => {
+            if(myTime == undefined){
+            document.getElementById("target").innerHTML = "Too Slow"
+            console.log(i)
+            }
+        else{
+              buttonTime = Date.now()
+              buttonTime = buttonTime - myTime
+              console.log(buttonTime)
+              document.getElementById("target").innerHTML = "Time was : " + buttonTime
+        }
+}, 3000);
+     }
+  }
+  </script>
+
+</body>
+</html>
