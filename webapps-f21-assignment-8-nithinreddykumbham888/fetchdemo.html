@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Node Js fetchdemo</title>
+</head>
+
+<body>
+    <h1>Nithin Reddy Kumbham works with functions</h1>
+    <label for="input" id="input">Input 1: </label>
+    <input type="number" id="inp1" name="input"><br><br>
+    <label for="input1" id="input1">Input 2: </label>
+    <input type="number" id="inp2" name="input1"><br><br>
+    <button id="btn" onclick="fetchdemo()">Compute on the Server</button>
+    <p id="result">
+        <p id="sp1"></p>
+        <p id="sp2"></p>
+    </p>
+
+    <script>
+        function fetchdemo() {
+            var index;
+            var a = document.getElementById("inp1").value
+            var b = document.getElementById("inp2").value
+            fetch("http://localhost:3001?a=" + a + "&b=" + b).then((res) => {
+                return res.text()
+                console.log(res.text())
+            }).then((resp) => {
+                for (var i = 0; i < resp.length; i++) {
+                    if (resp[i] == "S") {
+                        index=i
+                        break
+                    }
+                }
+                document.getElementById("sp1").innerHTML =  resp.substring(0,31)
+                document.getElementById("sp2").innerHTML =   resp.substring(32)
+            }).catch(err => {
+                console.log(err.message)
+            })
+
+        }
+    </script>
+</body>
+
+</html>
